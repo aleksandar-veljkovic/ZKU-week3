@@ -38,7 +38,7 @@ describe('ECDH test', () => {
     });
     const decryptedMessage = await decrypt(ciphertext, ecdhbobSharedKey);
     expect(decryptedMessage).toStrictEqual(aliceMessage);
-  });
+  }, 10000); // I had to extend the default timeout as my laptop was running the tests for more than 5s
 
   it('should fail if decrypted with incorrect public key', async () => {
     const { privKey: bobPrivKey, pubKey: bobPubKey } = genKeypair(eddsa);
@@ -67,5 +67,5 @@ describe('ECDH test', () => {
 
     const decryptedMessage = await decrypt(ciphertext, ecdhSharedIncorrectKey);
     expect(decryptedMessage).not.toEqual(aliceMessage);
-  });
+  }, 10000); // I had to extend the default timeout as my laptop was running the tests for more than 5s
 });
